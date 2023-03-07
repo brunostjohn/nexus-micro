@@ -1,5 +1,5 @@
 var HID = require("node-hid");
-// const bmp = require("bmp-js");
+const bmp = require("bmp-js");
 const Jimp = require("jimp");
 
 class LCD {
@@ -50,10 +50,10 @@ class LCD {
   sendFrame(image_as_buffer) {
     const preprocess = Jimp.decoders["image/jpeg"](image_as_buffer);
     const image2 = new Jimp(preprocess);
-    console.log(preprocess);
     let image;
     image2.getBuffer(Jimp.MIME_BMP, (err, buffer) => {
-      image = buffer;
+      const bmpData = bmp.decode(buffer);
+      image = bmpData.data;
     });
     let chunks = [];
     if (image.length > 1016) {
