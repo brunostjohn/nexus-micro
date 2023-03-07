@@ -48,9 +48,11 @@ class LCD {
   }
 
   sendFrame(image_as_buffer) {
-    const preprocess = new Jimp(image_as_buffer);
+    const preprocess = Jimp.decoders["image/jpeg"](image_as_buffer);
+    const image2 = new Jimp(preprocess);
+    console.log(preprocess);
     let image;
-    preprocess.getBuffer(Jimp.MIME_BMP, (buffer) => {
+    image2.getBuffer(Jimp.MIME_BMP, (err, buffer) => {
       image = buffer;
     });
     let chunks = [];
