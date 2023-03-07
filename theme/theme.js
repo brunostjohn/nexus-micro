@@ -33,7 +33,7 @@ function renderFrame() {
   context.fillStyle = config.textColour;
   context.textBaseline = "middle";
   context.fillText(time, 320, 24);
-  return canvas.toBuffer("image/bmp", 100);
+  return canvas.toBuffer("image/jpeg", 100);
 }
 
 function renderPreview() {

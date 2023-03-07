@@ -11,6 +11,7 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.37",
     "bmp-js": "^0.1.0",
+    "jimp": "^0.22.7",
     "node-hid": "^2.1.2",
     "winax": "^3.3.4"
   }

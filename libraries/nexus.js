@@ -1,5 +1,6 @@
 var HID = require("node-hid");
-const bmp = require("bmp-js");
+// const bmp = require("bmp-js");
+const Jimp = require("jimp");
 
 class LCD {
   constructor() {
@@ -46,8 +47,12 @@ class LCD {
     } while (currentDate - date < milliseconds);
   }
 
-  sendFrame(image_as_base64) {
-    const image = Buffer.from(image_as_base64, "base64");
+  sendFrame(image_as_buffer) {
+    const preprocess = new Jimp(image_as_buffer);
+    let image;
+    preprocess.getBuffer(Jimp.MIME_BMP, (buffer) => {
+      image = buffer;
+    });
     let chunks = [];
     if (image.length > 1016) {
       for (let i = 0; i < image.length; i += 1016) {
