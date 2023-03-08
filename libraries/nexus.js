@@ -60,6 +60,7 @@ class LCD {
         if (counter === 4) {
           counter = 0;
           finalArray.push(...[rgba[2], rgba[1], rgba[0], rgba[3]]);
+          rgba = [];
         }
         rgba.push(pair[1]);
         counter++;
