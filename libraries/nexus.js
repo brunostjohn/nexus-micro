@@ -53,16 +53,16 @@ class LCD {
     let image;
     image2.getBuffer(Jimp.MIME_BMP, (err, buffer) => {
       const bmpData = bmp.decode(buffer);
-      let counter = 0;
+      let counter = 1;
       let rgba = [];
       let finalArray = [];
       for (const pair of bmpData.data.entries()) {
-        rgba.push(pair[1]);
-        counter++;
-        if (counter === 3) {
+        if (counter === 4) {
           counter = 0;
           finalArray.push(...[rgba[2], rgba[1], rgba[0], rgba[3]]);
         }
+        rgba.push(pair[1]);
+        counter++;
       }
       image = Buffer.from(finalArray);
     });
